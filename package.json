@@ -10,9 +10,9 @@
   "homepage": "http://atom.github.io/language-htaccess",
   "repository": {
     "type": "git",
-    "url": "https://github.com/muchweb/language-htaccess.git"
+    "url": "https://github.com/muchweb/atom-language-htaccess.git"
   },
   "bugs": {
-    "url": "https://github.com/muchweb/language-htaccess/issues"
+    "url": "https://github.com/muchweb/atom-language-htaccess/issues"
   }
 }
