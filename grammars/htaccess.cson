@@ -1,0 +1,15 @@
+'scopeName': 'htaccess'
+'name': 'HTACCESS'
+'fileTypes': [
+  'htaccess'
+]
+'patterns': [
+  {
+    'include': '#comment'
+  }
+]
+'repository':
+  'comment':
+    'begin': '#'
+    'end': '\n'
+    'name': 'comment.block.htaccess'
