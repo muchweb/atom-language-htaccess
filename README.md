@@ -1,4 +1,4 @@
-# HTACCESS support in Atom [![Build Status](https://travis-ci.org/muchweb/language-htaccess.svg?branch=master)](https://travis-ci.org/muchweb/language-htaccess)
+# HTACCESS support in Atom
 
 Adds syntax highlighting to `.htaccess` files in Atom.
 
