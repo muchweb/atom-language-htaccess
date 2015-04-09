@@ -1,0 +1,8 @@
+{
+  ".htaccess": {
+    "editor": {
+      "commentStart": "# ",
+      "foldEndPattern": "^\\s*(\\}\\b)"
+    }
+  }
+}
