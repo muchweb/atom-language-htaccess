@@ -7,9 +7,192 @@
   {
     'include': '#comment'
   }
+  {
+    'include': '#keywords'
+  }
+  {
+    'include': '#entities'
+  }
+  {
+    'include': '#strings'
+  }
+  {
+    'include': '#others'
+  }
 ]
+
 'repository':
   'comment':
     'begin': '#'
     'end': '\n'
     'name': 'comment.block.htaccess'
+  'entities':
+    'patterns': [
+      {
+        'match':
+          '(<)(Proxy|ProxyMatch|IfVersion|Directory|DirectoryMatch|Files|FilesMatch|IfDefine|IfModule|Limit|LimitExcept|Location|LocationMatch|VirtualHost)(\\s.*)?(>)'
+        'captures':
+          '1': 'name': 'entity.tag.htaccess'
+          '2': 'name': 'entity.tag.htaccess'
+          '3':
+            'patterns': [
+              {
+                'include': '#strings'
+              }
+            ]
+          '4': 'name': 'entity.tag.htaccess'
+      }
+      {
+        'match': '<\/(Proxy|ProxyMatch|IfVersion|Directory|DirectoryMatch|Files|FilesMatch|IfDefine|IfModule|Limit|LimitExcept|Location|LocationMatch|VirtualHost)>'
+        'name': 'entity.tag.htaccess'
+      }
+    ]
+  'strings':
+    'patterns': [
+      {
+        'match': '".*?"'
+        'name': 'string.quoted.htaccess'
+      }
+      {
+        'match': '\'.*?\''
+        'name': 'string.quoted.htaccess'
+      }
+    ]
+  'others':
+    'patterns': [
+      {
+        'match': '\\s(\\d+)\\s'
+        'name': 'constant.integer.htaccess'
+      }
+      {
+        'match': '\\s+\\[.+\\]$',
+        'name': 'variable.definition.htaccess'
+      }
+    ]
+  'keywords':
+    'patterns': [
+      {
+        'match': '\\b(RewriteBase|RewriteCond|RewriteEngine|RewriteLock|RewriteLog|RewriteLogLevel|RewriteMap|RewriteOptions|RewriteRule)\\b'
+        'name': 'keyword.definition.htaccess'
+      }
+      {
+        'match': '\\b(AcceptPathInfo|AccessFileName|AddDefaultCharset|AddOutputFilterByType|AllowEncodedSlashes|AllowOverride|AuthName|AuthType|CGIMapExtension|ContentDigest|DefaultType|DocumentRoot|EnableMMAP|EnableSendfile|ErrorDocument|ErrorLog|FileETag|ForceType|HostnameLookups|IdentityCheck|Include|KeepAlive|KeepAliveTimeout|LimitInternalRecursion|LimitRequestBody|LimitRequestFields|LimitRequestFieldSize|LimitRequestLine|LimitXMLRequestBody|LogLevel|MaxKeepAliveRequests|NameVirtualHost|Options|Require|RLimitCPU|RLimitMEM|RLimitNPROC|Satisfy|ScriptInterpreterSource|ServerAdmin|ServerAlias|ServerName|ServerPath|ServerRoot|ServerSignature|ServerTokens|SetHandler|SetInputFilter|SetOutputFilter|TimeOut|TraceEnable|UseCanonicalName|AcceptMutex|AssignUserID|BS2000Account|ChildPerUserID|CoreDumpDirectory|EnableExceptionHook|Group|Listen|ListenBacklog|LockFile|MaxClients|MaxMemFree|MaxRequestsPerChild|MaxRequestsPerThread|MaxSpareServers|MaxSpareThreads|MaxThreads|MaxThreadsPerChild|MinSpareServers|MinSpareThreads|NumServers|PidFile|ReceiveBufferSize|ScoreBoardFile|SendBufferSize|ServerLimit|StartServers|StartThreads|ThreadLimit|ThreadsPerChild|ThreadStackSize|User|Win32DisableAcceptEx)\\b'
+        'name': 'keyword.core.htaccess'
+      }
+      {
+        'match': '\\b(AuthAuthoritative|AuthGroupFile|AuthUserFile|Anonymous|Anonymous_Authoritative|Anonymous_LogEmail|Anonymous_MustGiveEmail|Anonymous_NoUserID|Anonymous_VerifyEmail|AuthDBMAuthoritative|AuthDBMGroupFile|AuthDBMType|AuthDBMUserFile|AuthDigestAlgorithm|AuthDigestDomain|AuthDigestFile|AuthDigestGroupFile|AuthDigestNcCheck|AuthDigestNonceFormat|AuthDigestNonceLifetime|AuthDigestQop|AuthDigestShmemSize|AuthLDAPAuthoritative|AuthLDAPBindDN|AuthLDAPBindPassword|AuthLDAPCharsetConfig|AuthLDAPCompareDNOnServer|AuthLDAPDereferenceAliases|AuthLDAPEnabled|AuthLDAPFrontPageHack|AuthLDAPGroupAttribute|AuthLDAPGroupAttributeIsDN|AuthLDAPRemoteUserIsDN|AuthLDAPUrl|AuthAuthoritative|AuthGroupFile|AuthUserFile|Anonymous|Anonymous_Authoritative|Anonymous_LogEmail|Anonymous_MustGiveEmail|Anonymous_NoUserID|Anonymous_VerifyEmail|AuthDBMAuthoritative|AuthDBMGroupFile|AuthDBMType|AuthDBMUserFile|AuthDigestAlgorithm|AuthDigestDomain|AuthDigestFile|AuthDigestGroupFile|AuthDigestNcCheck|AuthDigestNonceFormat|AuthDigestNonceLifetime|AuthDigestQop|AuthDigestShmemSize|AuthLDAPAuthoritative|AuthLDAPBindDN|AuthLDAPBindPassword|AuthLDAPCharsetConfig|AuthLDAPCompareDNOnServer|AuthLDAPDereferenceAliases|AuthLDAPEnabled|AuthLDAPFrontPageHack|AuthLDAPGroupAttribute|AuthLDAPGroupAttributeIsDN|AuthLDAPRemoteUserIsDN|AuthLDAPUrl)\\b'
+        'name': 'keyword.definition.auth.htaccess'
+      }
+      {
+        'match': '\\b(Allow|Deny|Order|Access-Control-Allow-Origin|Accept-Encoding)\\b'
+        'name': 'constant.keyword.access.htaccess'
+      }
+      {
+        'match': '\\b(Action|Script)\\b'
+        'name': 'constant.keyword.actions.htaccess'
+      }
+      {
+        'match': '\\b(Alias|AliasMatch|Redirect|RedirectMatch|RedirectPermanent|RedirectTemp|ScriptAlias|ScriptAliasMatch|VirtualDocumentRoot|VirtualDocumentRootIP|VirtualScriptAlias|VirtualScriptAliasIP)\\b'
+        'name': 'keyword.alias.htaccess'
+      }
+      {
+        'match': '\\b(AddAlt|AddAltByEncoding|AddAltByType|AddDescription|AddIcon|AddIconByEncoding|AddIconByType|DefaultIcon|HeaderName|IndexIgnore|IndexOptions|IndexOrderDefault|ReadmeName)\\b'
+        'name': 'keyword.add.htaccess'
+      }
+      {
+        'match': '\\b(CacheDefaultExpire|CacheDisable|CacheEnable|CacheForceCompletion|CacheIgnoreCacheControl|CacheIgnoreHeaders|CacheIgnoreNoLastMod|CacheLastModifiedFactor|CacheMaxExpire|CacheDirLength|CacheDirLevels|CacheExpiryCheck|CacheGcClean|CacheGcDaily|CacheGcInterval|CacheGcMemUsage|CacheGcUnused|CacheMaxFileSize|CacheMinFileSize|CacheRoot|CacheSize|CacheTimeMargin|CacheFile|MMapFile|MCacheMaxObjectCount|MCacheMaxObjectSize|MCacheMaxStreamingBuffer|MCacheMinObjectSize|MCacheRemovalAlgorithm|MCacheSize|CacheNegotiatedDocs|ForceLanguagePriority|LanguagePriority)\\b'
+        'name': 'keyword.cache.htaccess'
+      }
+      {
+        'match': '\\b(MetaDir|MetaFiles|MetaSuffix)\\b'
+        'name': 'keyword.meta.htaccess'
+      }
+      {
+        'match': '\\b(ScriptLog|ScriptLogBuffer|ScriptLogLength|ScriptSock)\\b'
+        'name': 'keyword.cgi.htaccess'
+      }
+      {
+        'match': '\\b(CharsetDefault|CharsetOptions|CharsetSourceEnc)\\b'
+        'name': 'keyword.charset.htaccess'
+      }
+      {
+        'match': '\\b(Dav|DavDepthInfinity|DavMinTimeout|DavLockDB)\\b'
+        'name': 'keyword.dav.htaccess'
+      }
+      {
+        'match': '\\b(DeflateBufferSize|DeflateCompressionLevel|DeflateFilterNote|DeflateMemLevel|DeflateWindowSize)\\b'
+        'name': 'keyword.deflate.htaccess'
+      }
+      {
+        'match': '\\b(DirectoryIndex|DirectorySlash)\\b'
+        'name': 'keyword.dir.htaccess'
+      }
+      {
+        'match': '\\b(DumpIOInput|DumpIOOutput)\\b'
+        'name': 'keyword.dump.htaccess'
+      }
+      {
+        'match': '\\b(PassEnv|SetEnv|UnsetEnv|BrowserMatch|BrowserMatchNoCase|SetEnvIf|SetEnvIfNoCase)\\b'
+        'name': 'keyword.env.htaccess'
+      }
+      {
+        'match': '\\b(ExpiresActive|ExpiresByType|ExpiresDefault)\\b'
+        'name': 'keyword.expires.htaccess'
+      }
+      {
+        'match': '\\b(ExtFilterDefine|ExtFilterOptions)\\b'
+        'name': 'keyword.filter.htaccess'
+      }
+      {
+        'match': '\\b(Header|RequestHeader)\\b'
+        'name': 'keyword.headers.htaccess'
+      }
+      {
+        'match': '\\b(ImapBase|ImapDefault|ImapMenu)\\b'
+        'name': 'keyword.imap.htaccess'
+      }
+      {
+        'match': '\\b(SSIEndTag|SSIErrorMsg|SSIStartTag|SSITimeFormat|SSIUndefinedEcho|XBitHack)\\b'
+        'name': 'keyword.include.htaccess'
+      }
+      {
+        'match': '\\b(ISAPIAppendLogToErrors|ISAPIAppendLogToQuery|ISAPICacheFile|ISAPIFakeAsync|ISAPILogNotSupported|ISAPIReadAheadBuffer)\\b'
+        'name': 'keyword.api.htaccess'
+      }
+      {
+        'match': '\\b(LDAPCacheEntries|LDAPCacheTTL|LDAPConnectionTimeout|LDAPOpCacheEntries|LDAPOpCacheTTL|LDAPSharedCacheFile|LDAPSharedCacheSize|LDAPTrustedCA|LDAPTrustedCAType)\\b'
+        'name': 'keyword.ldap.htaccess'
+      }
+      {
+        'match': '\\b(BufferedLogs|CookieLog|CustomLog|LogFormat|TransferLog|ForensicLog)\\b'
+        'name': 'keyword.log.htaccess'
+      }
+      {
+        'match': '\\b(AddCharset|AddEncoding|AddHandler|AddInputFilter|AddLanguage|AddOutputFilter|AddType|DefaultLanguage|ModMimeUsePathInfo|MultiviewsMatch|RemoveCharset|RemoveEncoding|RemoveHandler|RemoveInputFilter|RemoveLanguage|RemoveOutputFilter|RemoveType|TypesConfig)\\b'
+        'name': 'keyword.mime.htaccess'
+      }
+      {
+        'match': '\\b(ProtocolEcho|Example|AddModuleInfo|MimeMagicFile|CheckSpelling|ExtendedStatus|SuexecUserGroup|UserDir)\\b'
+        'name': 'keyword.misc.htaccess'
+      }
+      {
+        'match': '\\b(NWSSLTrustedCerts|NWSSLUpgradeable|SecureListen|SSLCACertificateFile|SSLCACertificatePath|SSLCARevocationFile|SSLCARevocationPath|SSLCertificateChainFile|SSLCertificateFile|SSLCertificateKeyFile|SSLCipherSuite|SSLEngine|SSLMutex|SSLOptions|SSLPassPhraseDialog|SSLProtocol|SSLProxyCACertificateFile|SSLProxyCACertificatePath|SSLProxyCARevocationFile|SSLProxyCARevocationPath|SSLProxyCipherSuite|SSLProxyEngine|SSLProxyMachineCertificateFile|SSLProxyMachineCertificatePath|SSLProxyProtocol|SSLProxyVerify|SSLProxyVerifyDepth|SSLRandomSeed|SSLRequire|SSLRequireSSL|SSLSessionCache|SSLSessionCacheTimeout|SSLUserName|SSLVerifyClient|SSLVerifyDepth)\\b'
+        'name': 'keyword.ssl.htaccess'
+      }
+      {
+        'match': '\\b(AllowCONNECT|NoProxy|ProxyBadHeader|ProxyBlock|ProxyDomain|ProxyErrorOverride|ProxyFtpDirCharset|ProxyIOBufferSize|ProxyMaxForwards|ProxyPass|ProxyPassReverse|ProxyPreserveHost|ProxyReceiveBufferSize|ProxyRemote|ProxyRemoteMatch|ProxyRequests|ProxyTimeout|ProxyVia)\\b'
+        'name': 'keyword.proxy.htaccess'
+      }
+      {
+        'match': '\\b(RewriteBase|RewriteCond|RewriteEngine|RewriteLock|RewriteLog|RewriteLogLevel|RewriteMap|RewriteOptions|RewriteRule)\\b'
+        'name': 'keyword.rewrite.htaccess'
+      }
+      {
+        'match': '\\b(LoadFile|LoadModule)\\b'
+        'name': 'keyword.so.htaccess'
+      }
+      {
+        'match': '\\b(CookieDomain|CookieExpires|CookieName|CookieStyle|CookieTracking)\\b'
+        'name': 'keyword.cookie.htaccess'
+      }
+    ]
