@@ -1,4 +1,4 @@
-'scopeName': 'htaccess'
+'scopeName': 'source.htaccess'
 'name': 'HTACCESS'
 'fileTypes': [
   'htaccess'
