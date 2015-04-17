@@ -124,7 +124,7 @@
         'name': 'keyword.deflate.htaccess'
       }
       {
-        'match': '\\b(DirectoryIndex|DirectorySlash)\\b'
+        'match': '\\b(DirectoryIndex|DirectorySlash|FallbackResource)\\b'
         'name': 'keyword.dir.htaccess'
       }
       {
