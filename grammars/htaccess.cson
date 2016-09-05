@@ -84,7 +84,7 @@
         'name': 'keyword.definition.auth.htaccess'
       }
       {
-        'match': '\\b(Allow|Deny|Order|Access-Control-Allow-Origin|Accept-Encoding)\\b'
+        'match': '\\b((?i:Allow|Deny|Order)|Access-Control-Allow-Origin|Accept-Encoding)\\b'
         'name': 'constant.keyword.access.htaccess'
       }
       {
