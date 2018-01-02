@@ -1,6 +1,6 @@
 {
   "name": "language-htaccess",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "HTACCESS language support in Atom",
   "license": "GPLv3+",
   "engines": {
